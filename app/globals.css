@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+/* ─── Google Fonts ─────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&family=Albert+Sans:wght@300;400;500;600;700&display=swap");
+
+/* ─── Design Tokens ────────────────────────────────────── */
+@theme {
+  /* Stone palette */
+  --color-stone-50: #FAFAF8;
+  --color-stone-100: #F4F3EE;
+  --color-stone-200: #E8E5DB;
+  --color-stone-300: #D4D0C3;
+  --color-stone-400: #B8B3A2;
+  --color-stone-600: #7A7566;
+  --color-stone-700: #5C5849;
+  --color-stone-800: #3D3A31;
+  --color-stone-900: #1E1C17;
+
+  /* Accent */
+  --color-brass: #C8A55A;
+  --color-brass-light: #E2C47A;
+  --color-brass-dark: #9E7D35;
+  --color-matte-black: #1A1917;
+  --color-emergency: #C0392B;
+  --color-emergency-light: #E74C3C;
+
+  /* Typography */
+  --font-display: "Staatliches", system-ui, sans-serif;
+  --font-body: "Albert Sans", system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+
+  /* Spacing scale */
+  --spacing-touch: 48px;
+
+  /* Shadows */
+  --shadow-brass: 0 4px 24px rgba(200, 165, 90, 0.18);
+  --shadow-card: 0 2px 12px rgba(30, 28, 23, 0.10);
+  --shadow-elevated: 0 8px 32px rgba(30, 28, 23, 0.16);
+}
+
+/* ─── Base ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-stone-50);
+  color: var(--color-stone-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+/* ─── Focus visible ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-stone-100); }
+::-webkit-scrollbar-thumb { background: var(--color-stone-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brass); }
+
+/* ─── Ticker animation ──────────────────────────────────── */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker-scroll 28s linear infinite;
+  width: max-content;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Before/After slider ───────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease forwards;
+}
+
+/* ─── Micro-animations ──────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease forwards;
+}
