@@ -7,12 +7,12 @@ export function MonthSwitcher() {
   const isCurrentMonth = monthKey === currentMonthKey()
 
   return (
-    <div className="flex items-center gap-1 rounded-xl border border-stone-200 bg-white p-1 dark:border-stone-800 dark:bg-stone-900">
+    <div className="flex items-center gap-1 rounded-full border border-rose-100 bg-white p-1 dark:border-stone-800 dark:bg-stone-900">
       <button
         type="button"
         onClick={goToPreviousMonth}
         aria-label="Mois précédent"
-        className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+        className="rounded-full p-1.5 text-rose-400 hover:bg-rose-50 dark:text-stone-400 dark:hover:bg-stone-800"
       >
         <ChevronLeft size={18} />
       </button>
@@ -28,7 +28,7 @@ export function MonthSwitcher() {
         type="button"
         onClick={goToNextMonth}
         aria-label="Mois suivant"
-        className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800"
+        className="rounded-full p-1.5 text-rose-400 hover:bg-rose-50 dark:text-stone-400 dark:hover:bg-stone-800"
       >
         <ChevronRight size={18} />
       </button>

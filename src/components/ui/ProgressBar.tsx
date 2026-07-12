@@ -9,7 +9,7 @@ interface ProgressBarProps {
 }
 
 const STATUS_TRACK_CLASSES: Record<BudgetStatus, string> = {
-  good: 'bg-rose-500 dark:bg-rose-400',
+  good: 'bg-gradient-brand',
   warning: 'bg-amber-500 dark:bg-amber-400',
   critical: 'bg-red-600 dark:bg-red-500',
 }
@@ -19,7 +19,7 @@ export function ProgressBar({ value, max, status = 'good', className }: Progress
 
   return (
     <div
-      className={clsx('h-2 w-full overflow-hidden rounded-full bg-stone-100 dark:bg-stone-800', className)}
+      className={clsx('h-2.5 w-full overflow-hidden rounded-full bg-rose-50 dark:bg-stone-800', className)}
       role="progressbar"
       aria-valuenow={Math.round(percent)}
       aria-valuemin={0}

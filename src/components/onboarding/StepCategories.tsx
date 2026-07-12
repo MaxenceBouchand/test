@@ -28,7 +28,7 @@ export function StepCategories({ categories, method, income, onChange }: StepCat
   const renderRow = (category: Category) => (
     <div
       key={category.id}
-      className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 px-4 py-2.5 dark:border-stone-800"
+      className="flex items-center justify-between gap-3 rounded-2xl border border-rose-100 px-4 py-2.5 dark:border-stone-800"
     >
       <span className="text-sm text-stone-700 dark:text-stone-200">{category.name}</span>
       <div className="flex items-center gap-1">
@@ -38,7 +38,7 @@ export function StepCategories({ categories, method, income, onChange }: StepCat
           step={5}
           value={category.monthlyBudget || ''}
           onChange={(e) => updateBudget(category.id, Number(e.target.value))}
-          className="w-24 rounded-lg border border-stone-300 bg-white px-2 py-1 text-right text-sm text-stone-900 outline-none focus:border-rose-400 focus:ring-2 focus:ring-rose-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="w-24 rounded-full border border-rose-200 bg-white px-3 py-1 text-right text-sm text-stone-900 outline-none focus:border-rose-400 focus:ring-2 focus:ring-rose-100 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
         <span className="text-xs text-stone-400">€</span>
       </div>
@@ -48,7 +48,7 @@ export function StepCategories({ categories, method, income, onChange }: StepCat
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-50">
+        <h2 className="font-display text-xl font-bold text-stone-900 dark:text-stone-50">
           Vos catégories de départ
         </h2>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
@@ -76,7 +76,7 @@ export function StepCategories({ categories, method, income, onChange }: StepCat
 
       <div
         className={clsx(
-          'rounded-xl px-4 py-3 text-sm font-medium',
+          'rounded-2xl px-4 py-3 text-sm font-medium',
           method === 'zero-based' && Math.abs(unassigned) > 0.5
             ? 'bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300'
             : 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300',

@@ -8,6 +8,7 @@ import { OverspendAlerts } from '../components/dashboard/OverspendAlerts'
 import { CategoryBreakdownChart } from '../components/dashboard/CategoryBreakdownChart'
 import { BudgetVsActualChart } from '../components/dashboard/BudgetVsActualChart'
 import { ReportDownloadButton } from '../components/dashboard/ReportDownloadButton'
+import { Blob } from '../components/ui'
 
 export function DashboardPage() {
   const { monthKey } = useCurrentMonth()
@@ -23,7 +24,8 @@ export function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="relative isolate flex flex-wrap items-center justify-between gap-3 overflow-hidden">
+        <Blob variant="brand" size={220} className="absolute -top-24 -left-10 -z-10" />
         <h1 className="text-2xl font-semibold text-stone-900 dark:text-stone-50">Tableau de bord</h1>
         <div className="flex items-center gap-3">
           <MonthSwitcher />

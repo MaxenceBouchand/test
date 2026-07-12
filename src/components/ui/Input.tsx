@@ -20,12 +20,12 @@ export function Input({ label, error, hint, id, className, ...rest }: InputProps
       <input
         id={inputId}
         className={clsx(
-          'rounded-xl border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm outline-none transition-colors',
+          'rounded-2xl border bg-white px-3.5 py-2.5 text-sm text-stone-900 shadow-sm outline-none transition-colors',
           'placeholder:text-stone-400 focus:border-rose-400 focus:ring-2 focus:ring-rose-100',
           'dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:ring-rose-900/40',
           error
             ? 'border-red-400 focus:border-red-400 focus:ring-red-100'
-            : 'border-stone-300 dark:border-stone-700',
+            : 'border-rose-200 dark:border-stone-700',
           className,
         )}
         aria-invalid={Boolean(error)}

@@ -28,7 +28,7 @@ export function StepMethod({ method, onChange }: StepMethodProps) {
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h2 className="text-xl font-semibold text-stone-900 dark:text-stone-50">
+        <h2 className="font-display text-xl font-bold text-stone-900 dark:text-stone-50">
           Quelle méthode voulez-vous suivre ?
         </h2>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
@@ -45,16 +45,16 @@ export function StepMethod({ method, onChange }: StepMethodProps) {
               type="button"
               onClick={() => onChange(option.value)}
               className={clsx(
-                'flex flex-col gap-2 rounded-2xl border p-5 text-left transition-colors',
+                'flex flex-col gap-2 rounded-3xl border p-5 text-left transition-all',
                 selected
-                  ? 'border-rose-400 bg-rose-50 dark:border-rose-500 dark:bg-rose-900/20'
-                  : 'border-stone-200 bg-white hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900',
+                  ? 'border-rose-300 bg-rose-50 shadow-glow-rose dark:border-rose-500 dark:bg-rose-900/20'
+                  : 'border-rose-100 bg-white hover:border-rose-200 dark:border-stone-700 dark:bg-stone-900',
               )}
             >
               <div className="flex items-center justify-between">
-                <span className="font-semibold text-stone-900 dark:text-stone-50">{option.title}</span>
+                <span className="font-display font-semibold text-stone-900 dark:text-stone-50">{option.title}</span>
                 {selected && (
-                  <span className="flex size-5 items-center justify-center rounded-full bg-rose-500 text-white">
+                  <span className="flex size-5 items-center justify-center rounded-full bg-gradient-brand-strong text-white">
                     <Check size={12} />
                   </span>
                 )}

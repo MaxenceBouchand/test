@@ -12,11 +12,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
-    'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 disabled:bg-rose-300 dark:bg-rose-500 dark:hover:bg-rose-400 dark:disabled:bg-rose-900 dark:disabled:text-stone-500',
+    'bg-gradient-brand-strong text-white shadow-glow-rose hover:brightness-105 active:brightness-95 disabled:bg-none disabled:bg-rose-300 disabled:shadow-none dark:disabled:bg-rose-900 dark:disabled:text-stone-500',
   secondary:
-    'border border-stone-300 bg-white text-stone-700 hover:bg-stone-50 disabled:text-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200 dark:hover:bg-stone-800',
+    'border border-rose-200 bg-white text-rose-700 hover:bg-rose-50 disabled:text-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:text-rose-200 dark:hover:bg-stone-800',
   ghost:
-    'text-stone-600 hover:bg-stone-100 disabled:text-stone-300 dark:text-stone-300 dark:hover:bg-stone-800',
+    'text-stone-600 hover:bg-rose-50 disabled:text-stone-300 dark:text-stone-300 dark:hover:bg-stone-800',
   destructive:
     'bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300 dark:bg-red-500 dark:hover:bg-red-400',
 }
@@ -37,7 +37,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        'inline-flex items-center justify-center rounded-xl font-medium transition-colors disabled:cursor-not-allowed',
+        'inline-flex items-center justify-center rounded-full font-medium transition-all disabled:cursor-not-allowed',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-950',
         VARIANT_CLASSES[variant],
         SIZE_CLASSES[size],

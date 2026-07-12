@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { useBudgetStore } from '../../store/useBudgetStore'
 import type { BudgetMethod, Category } from '../../types'
 import { buildSeedCategories } from '../../lib/seedData'
-import { Button } from '../ui'
+import { Button, Blob } from '../ui'
 import { StepIncome } from './StepIncome'
 import { StepMethod } from './StepMethod'
 import { StepCategories } from './StepCategories'
@@ -48,13 +48,16 @@ export function OnboardingWizard() {
   const handleBack = () => setStep((s) => Math.max(0, s - 1))
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-stone-50 px-4 py-10 dark:bg-stone-950">
-      <div className="w-full max-w-xl rounded-2xl border border-stone-200 bg-white p-8 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-rose-50 px-4 py-10 dark:bg-[#221019]">
+      <Blob variant="blob" size={420} className="absolute -top-20 -left-24" />
+      <Blob variant="peachy" size={380} className="absolute -bottom-24 -right-16" />
+
+      <div className="relative w-full max-w-xl rounded-3xl border border-rose-100 bg-white p-8 shadow-[0_12px_40px_-12px_rgba(240,73,138,0.25)] dark:border-stone-800 dark:bg-stone-900">
         <div className="mb-6 flex items-center gap-2">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-rose-500 text-white">
-            <PiggyBank size={18} />
+          <div className="flex size-10 items-center justify-center rounded-2xl bg-gradient-brand-strong text-white shadow-glow-rose">
+            <PiggyBank size={20} />
           </div>
-          <span className="text-lg font-semibold text-stone-900 dark:text-stone-50">Budget rose</span>
+          <span className="font-display text-xl font-bold text-rose-700 dark:text-rose-300">Budget rose</span>
         </div>
 
         <div className="mb-8 flex items-center gap-2">
@@ -62,10 +65,10 @@ export function OnboardingWizard() {
             <div key={label} className="flex flex-1 items-center gap-2">
               <div
                 className={clsx(
-                  'flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold',
+                  'flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors',
                   index <= step
-                    ? 'bg-rose-500 text-white'
-                    : 'bg-stone-100 text-stone-400 dark:bg-stone-800',
+                    ? 'bg-gradient-brand text-white shadow-glow-rose'
+                    : 'bg-rose-50 text-rose-300 dark:bg-stone-800',
                 )}
               >
                 {index + 1}
@@ -79,7 +82,7 @@ export function OnboardingWizard() {
                 {label}
               </span>
               {index < STEP_LABELS.length - 1 && (
-                <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800" />
+                <div className="h-px flex-1 bg-rose-100 dark:bg-stone-800" />
               )}
             </div>
           ))}
