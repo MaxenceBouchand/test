@@ -1,0 +1,112 @@
+import { useState } from 'react'
+import { PiggyBank } from 'lucide-react'
+import clsx from 'clsx'
+import { useBudgetStore } from '../../store/useBudgetStore'
+import type { BudgetMethod, Category } from '../../types'
+import { buildSeedCategories } from '../../lib/seedData'
+import { Button } from '../ui'
+import { StepIncome } from './StepIncome'
+import { StepMethod } from './StepMethod'
+import { StepCategories } from './StepCategories'
+
+const STEP_LABELS = ['Revenu', 'Méthode', 'Catégories']
+
+export function OnboardingWizard() {
+  const [step, setStep] = useState(0)
+  const [income, setIncome] = useState(0)
+  const [method, setMethod] = useState<BudgetMethod>('50-30-20')
+  const [categories, setCategories] = useState<Category[]>([])
+  const [incomeError, setIncomeError] = useState<string | null>(null)
+
+  const setMonthlyIncome = useBudgetStore((s) => s.setMonthlyIncome)
+  const setStoreMethod = useBudgetStore((s) => s.setMethod)
+  const seedCategories = useBudgetStore((s) => s.seedCategories)
+  const completeOnboarding = useBudgetStore((s) => s.completeOnboarding)
+
+  const handleNext = () => {
+    if (step === 0) {
+      if (income <= 0) {
+        setIncomeError('Indiquez un revenu supérieur à 0 pour continuer.')
+        return
+      }
+      setIncomeError(null)
+      setStep(1)
+      return
+    }
+    if (step === 1) {
+      setCategories(buildSeedCategories(method, income))
+      setStep(2)
+      return
+    }
+    // step === 2: finalize
+    setMonthlyIncome(income)
+    setStoreMethod(method)
+    seedCategories(categories)
+    completeOnboarding()
+  }
+
+  const handleBack = () => setStep((s) => Math.max(0, s - 1))
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-stone-50 px-4 py-10 dark:bg-stone-950">
+      <div className="w-full max-w-xl rounded-2xl border border-stone-200 bg-white p-8 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+        <div className="mb-6 flex items-center gap-2">
+          <div className="flex size-9 items-center justify-center rounded-xl bg-rose-500 text-white">
+            <PiggyBank size={18} />
+          </div>
+          <span className="text-lg font-semibold text-stone-900 dark:text-stone-50">Budget rose</span>
+        </div>
+
+        <div className="mb-8 flex items-center gap-2">
+          {STEP_LABELS.map((label, index) => (
+            <div key={label} className="flex flex-1 items-center gap-2">
+              <div
+                className={clsx(
+                  'flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold',
+                  index <= step
+                    ? 'bg-rose-500 text-white'
+                    : 'bg-stone-100 text-stone-400 dark:bg-stone-800',
+                )}
+              >
+                {index + 1}
+              </div>
+              <span
+                className={clsx(
+                  'text-xs font-medium',
+                  index <= step ? 'text-stone-700 dark:text-stone-200' : 'text-stone-400',
+                )}
+              >
+                {label}
+              </span>
+              {index < STEP_LABELS.length - 1 && (
+                <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        {step === 0 && (
+          <StepIncome
+            income={income}
+            onChange={(value) => {
+              setIncome(value)
+              if (value > 0) setIncomeError(null)
+            }}
+          />
+        )}
+        {step === 0 && incomeError && <p className="mt-2 text-xs text-red-600 dark:text-red-400">{incomeError}</p>}
+        {step === 1 && <StepMethod method={method} onChange={setMethod} />}
+        {step === 2 && (
+          <StepCategories categories={categories} method={method} income={income} onChange={setCategories} />
+        )}
+
+        <div className="mt-8 flex justify-between">
+          <Button variant="ghost" onClick={handleBack} disabled={step === 0}>
+            Précédent
+          </Button>
+          <Button onClick={handleNext}>{step === 2 ? 'Terminer' : 'Suivant'}</Button>
+        </div>
+      </div>
+    </div>
+  )
+}
