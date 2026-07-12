@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useBudgetStore } from './store/useBudgetStore'
 import { AppShell } from './components/layout/AppShell'
 import { OnboardingPage } from './pages/OnboardingPage'
@@ -100,9 +100,9 @@ function AppRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppRoutes />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
