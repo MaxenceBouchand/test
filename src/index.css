@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    ui-sans-serif, 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Baloo 2', ui-sans-serif, system-ui, sans-serif;
+
+  /* Punchier, more "girly" pink than a dusty minimal rose — still reads as pink, not red. */
+  --color-rose-50: #fff0f6;
+  --color-rose-100: #ffe0ec;
+  --color-rose-200: #ffc2d9;
+  --color-rose-300: #ff9dc0;
+  --color-rose-400: #ff6fa3;
+  --color-rose-500: #f0498a;
+  --color-rose-600: #d92e73;
+  --color-rose-700: #b3205d;
+  --color-rose-800: #8f1a4b;
+  --color-rose-900: #6b1339;
+  --color-rose-950: #3d0a20;
+
+  /* Secondary pastel accent — soft orchid/lavender, used sparingly (badges, blobs, gradients). */
+  --color-lavender-50: #f6f0ff;
+  --color-lavender-100: #ede0ff;
+  --color-lavender-200: #dac2ff;
+  --color-lavender-300: #c2a0fa;
+  --color-lavender-400: #ab7ff2;
+  --color-lavender-500: #9361e0;
+  --color-lavender-600: #7a48c4;
+  --color-lavender-700: #613797;
+  --color-lavender-800: #4a2a73;
+  --color-lavender-900: #331d52;
+
+  /* Secondary pastel accent — soft peach/coral, used sparingly (badges, blobs, gradients). */
+  --color-peach-50: #fff4ec;
+  --color-peach-100: #ffe6d1;
+  --color-peach-200: #ffceac;
+  --color-peach-300: #ffb083;
+  --color-peach-400: #ff9660;
+  --color-peach-500: #fa7d4a;
+  --color-peach-600: #e8632f;
+  --color-peach-700: #c14e22;
+  --color-peach-800: #973d1b;
+  --color-peach-900: #6e2d14;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  @apply bg-rose-50 text-stone-800 antialiased dark:bg-[#221019] dark:text-stone-100;
+}
+
+::selection {
+  @apply bg-rose-200 text-rose-900;
+}
+
+h1,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Reusable gradient combos so pink/lavender/peach are mixed consistently instead of ad hoc per component. */
+.bg-gradient-brand {
+  background-image: linear-gradient(135deg, var(--color-rose-500), var(--color-rose-300));
+}
+
+.bg-gradient-brand-strong {
+  background-image: linear-gradient(135deg, var(--color-rose-600), var(--color-rose-400));
+}
+
+.bg-gradient-blob {
+  background-image: linear-gradient(135deg, var(--color-rose-300), var(--color-lavender-300));
+}
+
+.bg-gradient-peachy {
+  background-image: linear-gradient(135deg, var(--color-peach-300), var(--color-rose-300));
+}
+
+.text-gradient-brand {
+  background-image: linear-gradient(135deg, var(--color-rose-600), var(--color-lavender-500));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.shadow-glow-rose {
+  box-shadow: 0 8px 24px -8px rgba(240, 73, 138, 0.45);
+}
